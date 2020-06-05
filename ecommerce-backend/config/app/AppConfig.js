@@ -1,6 +1,6 @@
 require('dotenv').config();
 exports.server = {
-    SERVER_PORT                             : Number(process.env.PORT) || 4020,
+    SERVER_PORT                             : Number(process.env.PORT) || 4010,
     MODE                                    : 'prod',
     MONGO_URL                               : 'mongodb://localhost:27017/ecommerce',
     MONGO_TEST_URL                          : 'mongodb://localhost:27017/ecommerce',
