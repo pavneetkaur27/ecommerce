@@ -650,7 +650,7 @@ exports.orderTransaction = async function(req,res,next){
             }
         }
 
-        completePayment(order, product, function(completePaymentERR , response){
+        completePayment(order, product, async function(completePaymentERR , response){
             if(completePaymentERR){
                 return sendError(res, completePaymentERR , completePaymentERR);
             }
