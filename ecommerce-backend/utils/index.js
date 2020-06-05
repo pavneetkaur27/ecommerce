@@ -4,5 +4,4 @@ module.exports = {
     "AppUtil"                   : require('./modules/AppUtil'),
     "Crypt"                     : require('./modules/CryptUtil'),
     "jwt"                       : require('./modules/JWTUtil'),
-    's3Uploader'                 : require('./modules/AWSUtil')
 };

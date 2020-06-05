@@ -3,14 +3,18 @@ const Crypt                = require('../utils').Crypt;
 const errors               = require('../helper').Errors;
 const bv                   = require('bvalid');
 
-const model_name = 'orguseracc';
+const model_name = 'account';
 
 const schema = mongoose.Schema({
-
-    eml : { type : String,trim : true,lowercase : true,required : true,unique : true }, //e-mail
-    nm  : {type : String,trim: true,default : "No Name" }, //user name
-    pwd : {type : String, required : true },
-    act : { type : Boolean, default : true },
+    eml     : { type : String,trim : true,lowercase : true,required : true,unique : true }, //e-mail
+    name    : {type : String,trim: true,default : "No Name" }, //user name
+    pwd     : {type : String, required : true },
+    adrs1   : {type : String, required : false},  //address line 1
+    adrs2   : {type : String, required : false},  //address line 2
+    pincode : {type: Number, required : false},   //shipping pincode
+    city    :  {type : String, required : false}, //shipping city
+    state   : {type : String, required : false},  //shipping state
+    act     : { type : Boolean, default : true },
   },{ 
     timestamps : true
   }

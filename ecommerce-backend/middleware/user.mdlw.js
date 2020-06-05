@@ -50,7 +50,7 @@ exports.accessToken = function(req,res,next){
         var aid     = req.decoded.id;
        
         var aid = mongoose.Types.ObjectId(aid);
-        mongo.Model('orguseracc').findOne({
+        mongo.Model('account').findOne({
             '_id' : aid,
             'act' : true
         },function(err0,resp0){
