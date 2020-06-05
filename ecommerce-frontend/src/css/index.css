@@ -1,0 +1,670 @@
+body {
+	margin: 0;
+	font-family: 'Source Sans Pro', sans-serif!important;
+}
+html::-webkit-scrollbar {
+		width: 0px;
+		background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+		background: transparent;
+}
+*{
+	outline: none !important;
+}
+.no-select {
+	-webkit-touch-callout: none !important;
+		-webkit-user-select: none !important; 
+			-khtml-user-select: none !important;
+				-moz-user-select: none !important; 
+				-ms-user-select: none !important;
+						user-select: none !important;
+}
+:root {
+	--background: rgba(207, 224, 235, 0.5) !important;
+	--black: #212A39 !important;
+	--blue : #171f29 !important;
+	--light-black: rgba(33, 42, 57, 0.75) !important;
+	--red: #E94B35 !important;
+	--ff-SourceSansPro : 'Source Sans Pro', sans-serif !important;
+	--drawerwidth: 340px;
+}
+
+.float-right{
+	float: right !important;
+}
+.float-left{
+	float: left !important;
+}
+.dis-inline-block{
+	display: inline-block !important;
+}
+.dis-flex{
+	display: flex !important;
+}
+.dis-none{
+	display: none !important;
+}
+.width-50{
+	width: 50% !important;
+}
+.width-100{
+	width: 100% !important;
+}
+.dis-block{
+	display: block !important;
+}
+.text-align-left{
+	text-align: left !important;
+}
+.text-align-right{
+	text-align: right !important;
+}
+.text-align-center{
+	text-align: center !important;
+}
+.hide-all{
+    display: none;
+}
+.black-txt{
+	color: var(--black) !important;
+}
+.gray-txt{
+	color: var(--light-black) !important;
+}
+.blue-txt{
+	color: var(--blue) !important;
+}
+
+.font-20{
+	font-size: 20px;
+	color: var(--black);
+}
+
+.font-16{
+	font-size: 16px;
+	color: var(--black);
+}
+
+.text-ellipsis{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.center-all{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+}
+
+.center-vertical{
+	display:flex !important;
+	align-items:center !important;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.cursor-pointer{
+	cursor: pointer;
+}
+  
+.no-padding{
+  padding: 0 !important;
+}
+
+.no-margin{
+  margin: 0 !important;
+}
+
+.show-sm-992{
+	display: none;
+}
+
+.show-sm-576{
+	display: none;
+}
+
+/* Loader */
+.visible-loader {
+	background:url('../assests/loader.svg') center no-repeat;
+	display:inline-block;
+	font-size:0;height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	z-index:9999;
+	background-color: rgba(255,255,255,0.6)
+}
+
+/* Alert */
+
+.error-popover{
+	width: 285px;
+	padding: 12px;
+	height: max-content;
+	position: fixed;
+	background: #fff;
+	z-index: 1700;
+	bottom:30px;
+	left:24px;
+	display: flex;
+	transition: all 0.4s ease; 
+	-webkit-transition: all 0.4s ease ;
+	border: 0.5px solid rgb(231, 231, 231);
+	box-shadow: 0 3px 10px 0px rgba(109, 121, 190, 0.315);
+	border-radius: 4px;
+}
+@media only screen and (max-width: 768px) {
+    .error-popover{
+        margin-left: -12px;
+        margin-bottom: 35px;   
+    }
+}
+.error-popover .close{
+      width: 20px;
+}
+.error-popover .ep-icon-container{
+  width: 30px;
+}
+
+.error-popover .ep-content{
+  width: calc(100% - 50px);
+}
+
+.error-popover .ep-msg{
+  font-size: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.error-popover .ep-heading{
+    margin:0;
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000;
+      font-weight: 600;
+}
+
+  .error-popover .close-img{
+    width: 10px;
+    cursor:pointer;
+    height: 10px;
+  
+}
+  .error-popover .icon{
+    width: 15px;
+    height: 15px;
+    margin-left: 8px;
+  }
+
+  .hide-error-popover{
+    margin-left:calc( -285px - 24px);
+  }
+  
+
+
+.main-bottom-nav{
+    background-color: #243342!important;
+    color: #ffffff!important;
+    display: none !important;
+    position: fixed !important;
+    bottom: 0;
+    z-index: 999999 !important;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.MuiBottomNavigationAction-root{
+    color: white!important;
+}
+
+.org-main-body{
+    background-color: #f2f4f7; 
+    min-height: 100vh;
+}
+
+.org-mainbar{
+    min-height: calc(100vh - 50px)!important;;
+}
+
+.org-main-header{
+    height: 80px;
+    background: #ffffff !important;
+    display: block !important;
+    text-align: -webkit-center !important;
+}
+
+.shared-header{
+	height: 56px;
+	color:#ffffff !important;
+	background: #212A39 !important;
+	display: block;
+	text-align: -webkit-center !important;
+	box-shadow: none !important;
+  }
+
+.org-header-title{
+	font-size: 28px!important;
+    font-weight: 600!important;
+    font-style: normal!important;
+	text-align: center;
+	margin: 0px!important;
+    font-family: 'Source Sans Pro', sans-serif!important;
+}
+
+.org-header-logo{
+    margin-top: 21px!important;
+    height: 40px!important;
+}
+
+.org-blue-color{
+    color: #255CA8!important;
+}
+
+.org-cursor-pointer{
+    cursor: pointer;
+}
+
+.org-mainbar .btn-primary:focus{
+    box-shadow: none;
+}
+
+.org-generic-bold-font-style{
+    color: #212A39;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-size: 16px!important;
+    font-weight: 600!important;
+    line-height: 19px!important;
+}
+
+.org-generic-normal-font-style{
+    color: #212A39;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-size: 16px!important;
+    font-weight: 400!important;
+    line-height: 19px!important;
+}
+
+.org-generic-bigger-font-style{
+    color: #212A39;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-size: 18px!important;
+    font-weight: 600!important;
+    line-height: 22px!important;
+}
+
+
+.org-generic-biggest-font-style{
+    color: #212A39;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-size: 20px!important;
+    font-weight: 600!important;
+    line-height: 24px!important;
+}
+
+.org-generic-danger-color-font-style{
+    color: #E94B35!important;
+}
+
+.org-generic-success-color-font-style{
+    color: #31A128!important;
+}
+
+.org-genric-light-grey{
+    color: rgba(33, 42, 57, 0.75)!important;
+}
+
+.org-genric-light-color{
+    color: rgba(33, 42, 57, 0.5)!important;
+}
+
+.org-header-logout-style{
+    color: #255CA8!important;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    margin-right: 135px!important;
+    margin-top: 28px!important;
+    font-size: 18px!important;
+    font-weight: 600!important;
+    line-height: 22px!important;  
+    cursor: pointer;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+}
+
+.page-not-found{
+    color: #255CA8;
+    font-size: 48px;
+    font-weight: 700px;
+    text-align: center;
+    padding-top: 300px;
+}
+
+.org-continue-btn{
+    background-color: #255CA8;
+    border-radius: 5px;
+    width: 173px;
+    height: 48px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600!important;
+}
+
+.org-continue-btn:hover{
+    opacity: 0.7;
+    transition: all 0.5s;
+}
+
+.org-dashheader-logo-style{   
+    margin-top: 21px!important;
+    cursor: pointer;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+}
+
+.org-dashheader-noti-icon-style{
+    margin-right: 48px!important;
+    margin-top: 28px!important;
+}
+
+.org-dashheader-menubar-title{
+    color: #ffffff;
+    font-size: 18px!important;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-weight: 400;
+    opacity: 0.75;
+    line-height: 22px!important;
+    padding-top:18px!important; 
+    cursor: pointer;
+}
+
+.org-active-menu{
+   opacity: 1!important;
+}
+
+.org-dashheader-sec-btn{
+    border: 1px solid #ffffff!important;
+    background-color: transparent!important;
+    border-radius: 4px!important;
+    color: #ffffff!important;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-size: 16px!important;
+    line-height: 19px;
+    text-align: center;
+    padding:2px 4px;
+    margin-left: 20px;
+}
+
+.org-dashheader-sec-btn:hover{
+    opacity: 0.9;  
+}
+
+.org-dashheader-sec-btn:focus{
+    box-shadow: none!important;
+    /* border: none!important;     */
+}
+
+.org-dashboard-menubar{
+    margin-top: 10px;
+}
+
+.org-dashboard-menubar .MuiPaper-elevation8{
+    box-shadow: 0 2px 6px 0 rgba(33, 42, 57, 0.25)!important;
+}
+
+.org-dashboard-menuitem{
+    padding-right: 80px!important;
+    opacity: 0.75;
+}
+
+.org-innerheader-toolbar{
+    padding: 0px 40px;
+}
+
+.org-innerheader-toolbar .MuiToolbar-dense {
+    min-height: 56px;
+}
+
+@media (min-width: 600px ) and (max-width : 1788px){
+    .org-innerheader-toolbar .MuiToolbar-gutters{
+        padding: 0px!important;
+    }
+
+   
+}
+.org-dashboard-header-container{
+    width: 100%;
+    margin: 0 auto;
+    /* position: relative; */
+}
+
+.org-dashboard-menubar .MuiMenuItem-root{
+    min-height: auto!important;
+}
+
+.org-dashboard-menubar .MuiList-padding{
+    padding : 0px!important;
+}
+
+@media (min-width: 576px) {
+    .org-dashboard-header-container {
+      max-width: 100%;
+    }
+}
+  
+@media (min-width: 769px) {
+    .org-dashboard-header-container {
+      max-width: 720px;
+    }
+}
+  
+@media (min-width: 992px) {
+    .org-dashboard-header-container {
+      max-width: 960px;
+    }
+ 
+}
+  
+@media (min-width: 1200px) {
+    .org-dashboard-header-container {
+      max-width: 85%;
+    }
+}
+
+@media (min-width: 1788px) {
+    .org-dashboard-header-container {
+      padding-right: 74px!important;
+      padding-left: 74px!important;
+    }
+}
+
+.org-font-family{
+    font-family: 'Source Sans Pro', sans-serif!important;
+}
+
+.org-signup-form-heading{
+    color: #212a39!important;
+    font-size: 28px!important;
+    font-weight: 600!important;
+    font-style: normal!important;
+    line-height: 34px!important;
+    height: 36px;
+    text-align: center;
+    /* text-shadow : 0 0 0 #FFFFFF; */
+    font-family: 'Source Sans Pro', sans-serif!important;
+    margin-top: 72px!important;    
+}
+
+.org-signup-form-title{
+    color: #255CA8!important;
+    font-size: 24px!important;
+    font-weight:600!important;
+    line-height: 29px!important;
+    text-align: center!important;
+    margin-top: 16px!important; 
+    font-family: 'Source Sans Pro', sans-serif!important;
+    
+}
+
+.org-signup-card-container{
+    background-color: #FFFFFF;
+    border: 1px solid rgba(33, 42, 57, 0.15);
+    border-radius: 5px;
+    box-shadow: 0 2px 6px 0 rgba(33, 42, 57, 0.25)!important;
+    width: 100%;
+    margin:0px 10px;
+    padding: 0px!important;
+    margin-top:32px; 
+    margin-bottom:40px;
+      
+}
+
+.org-signup-heading{ 
+    color: #212A39!important;
+    font-size: 24px!important;
+    font-weight: 600!important;
+    line-height: 29px!important;
+    opacity: 0.75!important;
+    text-align: center!important;
+    margin: 40px 0px 0px 0px!important;
+    font-family: 'Source Sans Pro', sans-serif!important;
+}
+
+.org-signup-card-container .MuiCardContent-root {
+    padding: 0px;
+}
+
+.org-signupcard-inner-contanier{
+    margin : 0px 40px;
+}
+
+.org-signup-detail-title{
+    color: #212A39!important;
+    font-size: 18px!important;
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-weight: 600!important;
+    line-height: 22px!important;
+    text-align: left!important; 
+    margin-bottom:12px!important; 
+}
+
+.org-signup-detail-title-margin{
+    margin-top: 32px!important; 
+}
+
+
+.org-signup-detail-title-err-margin{
+    margin-top: 16px!important; 
+}
+
+.org-signup-input-field{
+    background-color: #FFFFFF;
+    border: 1.5px solid rgba(33, 42, 57, 0.25);
+    font-family: 'Source Sans Pro', sans-serif!important;
+    border-radius: 4px;
+    /* box-shadow: 0 0 3px 0 rgba(0, 157, 220, 0.45), inset 0 2px 3px 0 rgba(0, 157, 220, 0.3); */
+    width: 100%;
+    height: 56px;
+    color: #212A39;
+    font-size: 16px;
+    padding: 16px;
+    /* -webkit-text-security: square; */
+    font-weight: 400;
+    line-height: 19px;
+    text-align: left;
+}
+
+.org-err-input{
+    border: 1.5px solid #E94B35;
+    
+}
+
+.org-error-msg{
+    color: #E94B35;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: left;
+    margin-top : 6px; 
+}
+
+.org-signup-btn{ 
+    font-family: 'Source Sans Pro', sans-serif!important;
+    background-color: #212A39!important;
+    border-radius: 4px!important;
+    width: 100%;
+    height: 56px!important;
+    color: #FFFFFF!important;
+    font-size: 18px!important;
+    font-weight: 600!important;
+    line-height: 22px!important;
+    padding: 1px;
+    text-transform: none !important;
+    text-align: center!important;
+}
+
+.org-signup-btn:hover{
+    opacity: 0.9;
+    transition: all 0.5s;
+}
+
+.org-signup-footer{
+    color: #212A39!important;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: center;
+    margin-top:32px; 
+    
+}
+
+.org-signup-footer-title{
+    color: #255CA8!important;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: center;
+    margin-top:16px!important;
+    cursor: pointer; 
+}
+
+.org-hover-text:hover{
+    opacity: 0.7;
+    transition: all 0.5s;
+}
+
+.org-login-card-container{
+    background-color: #FFFFFF!important;
+    border: 1px solid rgba(33, 42, 57, 0.15);
+    border-radius: 4px!important;
+    box-shadow: 0 2px 6px 0 rgba(33, 42, 57, 0.25)!important;
+    width: 100%;
+    padding: 40px;
+    margin:0px 10px;
+    /* margin:50px; */
+    margin-top:32px; 
+}
+
+.org-login-card-container .MuiCardContent-root {
+    padding: 0px!important;
+}
+
+
+.product-card-container{
+    min-height: 220px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #212A39;
+    margin: 20px 0px;
+    padding: 16px;
+}
+
+@media (min-width : 576px){
+    .org-login-card-container{
+        min-width: 570px;
+    }
+    .org-signup-card-container{
+        min-width: 570px;
+    }
+}
