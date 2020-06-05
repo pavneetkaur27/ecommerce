@@ -3,7 +3,6 @@ const request 				= require('request');
 const bvalid                = require("bvalid");
 const mongo                 = require('../../services').Mongo;
 const to                    = require('../../services').Utility.to;
-const moment                = require('moment-timezone');
 const helper                = require('../../helper');
 const utils					= require('../../utils');
 const configs               = require('../../config/app').server;
@@ -14,6 +13,7 @@ const crypt 				= utils.Crypt;
 const JWT 					= utils.jwt;
 const sendError 		    = httpResponse.sendError;
 const sendSuccess			= httpResponse.sendSuccess;
+
 
 exports.signUp = function(req,res,next){
     
@@ -268,17 +268,6 @@ exports.createOrder = async function(req,res,next){
             }
         }
 
-        // // update inventory for maintaing the count of orders placed 
-        // var inventory_updated_obj = {
-        //     stock_ordered :  (product.stock_ordered ? product.stock_ordered + quantity : quantity)
-        // }
-        // var [err0,updated_inventory] = await to(mongo.Model('inventory').updateOne(
-        //     inventory_query_string,
-        //     {$set :  inventory_updated_obj}
-        // ));
-        // if(err0){
-        //     return sendError(res,"server_error","server_error");
-        // }
 
         var order_query_string = {
             act         : true,
@@ -557,7 +546,19 @@ exports.cancelOrder = async function(req,res,next){
 // Let us suppose user attempt to pay on checkout page 
 // I haven't integrated payment module, but i have integrated Razorpay and paytm third party Api in my one of the project
 // CHECK 1 : Check if order and product exists in database or not
-// CHECK 2 : Soft delete from database by making "act"(active) attribute of order model false
+// CHECK 2 : Again Checks for stock available or not, if stock available in that moment, the proceed with payment.
+// CHECK 3 : Before hitting razorpay api, check whether amount charged from user is actual amount to be charged or not
+// CHECK 4 : If razorpay api returned status captured i.e. payment is done successfully. Then we can maintain rabbitmq queues to have payments done in order.(I haven't done here)
+//            4.1 For once cross verify in rabbitmq workers or in the below api I directly checked whether stock was available even if payment is done
+//                 4.1.1 If there is any of stock availability issue then refund the amount at that time or after a set time interval 
+//                 4.1.2 We can update is_product_avail to false if stock is not available so that more users could not order it.
+//            4.2 If stock is there and payment was successful , 
+//                 4.2.1 Update stock_ordered in inventory model(increase in ordered stock)
+//                 4.2.2 store the payment details of the user in transaction model and store the transaction_id in order model
+//                 4.2.3 Generate invoice etc
+//                 4.2.4 Update order status to PAID in order model
+// Here even multiple users place orders, then only FIFO order will be followed in which stock gets ordered. Rest will be shown "Out of stock/ Temporary Unavailable" in UI side.
+// ADDONs : Shipping Address details will be added before the payment details and stored in account model(Haven't added as of now)
 
 exports.orderTransaction = async function(req,res,next){ 
     req.checkBody('order_id',errorCodes.invalid_parameters[1]).notEmpty();
@@ -654,6 +655,66 @@ exports.orderTransaction = async function(req,res,next){
                 return sendError(res, completePaymentERR , completePaymentERR);
             }
 
+            if(response.status == 'captured'){               //razorpay api return capture status when payment is done successfully
+
+                //cross check if stock is present in inventory if not refund the amount
+                var [err,current_product] = await to(mongo.Model('inventory').findOne(inventory_query_string, inventory_proj, inventory_option)); 
+                if(err){
+                    return sendError(res,err,"server_error");
+                }
+        
+                // product with product_id not found in inventory
+                if(!current_product){
+                    return refundPayment();
+                }
+        
+                //if product is not available for ordering
+                if(!current_product.is_product_avail){
+                    return refundPayment();
+                }
+
+                var total_stock = current_product.total_stock;
+
+                //check if avaibable stock is greater than 0
+                if(total_stock < 1){
+                    return refundPayment();
+                }
+        
+                var current_avail_stock = total_stock - current_product.stock_ordered; //current stock in inventory ( total-stock - stock_ordered_uptill_now)
+        
+                //check if current stock can meet need of user
+                if(current_avail_stock < quantity){
+        
+                    //check if user can re-order by decreasing his ordering quantity
+                    if(current_avail_stock > 0){
+                        return refundPayment();
+                    }else {
+                        return refundPayment();
+                    }
+                }
+
+                // if stock is there and payment is done update the stock_ordered number
+                // update inventory for maintaing the count of orders placed 
+                var inventory_updated_obj = {
+                    stock_ordered :  (current_product.stock_ordered ? current_product.stock_ordered + order.quantity : order.quantity)
+                }
+                var [err0,updated_inventory] = await to(mongo.Model('inventory').updateOne(
+                    inventory_query_string,
+                    {$set :  inventory_updated_obj}
+                ));
+                if(err0){
+                    return sendError(res,"server_error","server_error");
+                }
+
+                return sendSuccess(res, {});              // successfully placed order
+
+                function refundPayment(){
+                   // return back the money to user because ordered not placed
+                }
+        
+            }else{
+                return sendError(res, "payment_failed" , "payment_failed");
+            }
         }) 
     }catch(err){
         return sendError(res,err,"server_error");
@@ -672,7 +733,7 @@ function completePayment(order, product ,cb){
     var final_amount    = quantity * price;
 
     if(product.total_paid != final_amount){
-        return cb("invalid_price_paid", null);
+        return cb("invalid_amount_paid", null);
     }else{
         // suppose razorpay api return the result
         return cb(null, razorpay_response);
