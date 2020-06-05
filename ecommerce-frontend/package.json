@@ -1,5 +1,5 @@
 {
-  "name": "recruitment-frontend",
+  "name": "ecommerce-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,7 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "node --max_old_space_size=1900 --stack-size=300000 ./scripts/deploy.js > /var/log/recruitment-frontend/express.log 2>&1 &"
+    "deploy": "node --max_old_space_size=1900 --stack-size=300000 ./scripts/deploy.js > /var/log/ecommmerce-frontend/express.log 2>&1 &"
   },
   "eslintConfig": {
     "extends": "react-app"
