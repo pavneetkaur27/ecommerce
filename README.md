@@ -1,14 +1,14 @@
 # ecommerce
 
 ## How to run the Ecommerce BACKEND
-1. In your terminal, navigate to the `api` directory.
+1. In your terminal, navigate to the `ecommerce-backend` directory.
 2. Run `npm install` to install all dependencies.
 3. Run `npm start` to start the app.
 
 NOTE: Backend server is running on PORT: 4010
 
 ## How to run the Ecommerce FRONTEND
-1. In another terminal, navigate to the `client` directory.
+1. In another terminal, navigate to the `ecommerce-frontend` directory.
 2. Run `npm install` to install all dependencies.
 3. Run `npm run start` or `npm run local` to run in local environment. 
 
