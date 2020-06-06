@@ -39,36 +39,6 @@ const handleResponseErrorCase1 = (data)=>{
   }
 }
 
-export const saveSelectedJobId = (jobid) => dispatch => {
-  return dispatch({
-    type: "SAVE_ORG_JOB_ID",
-    payload: {
-      jobid : jobid
-    }
-  });
-}
-
-export const saveSelectedApplicationStatus = (status) => dispatch => {
-  return dispatch({
-    type: "SAVE_ORG_APPLICATION_STATUS",
-    payload: {
-      jobappstatus : status
-    }
-  });
-}
-
-export const clearSavedJobApplicationValues = () => dispatch =>{
-  return dispatch({
-    type: "CLEAR_ORG_APPLICATION_STATUS",
-  });
-}
-
-
-export const clearCandidateDetail = () => dispatch =>{
-  return dispatch({
-    type: "ORG_REMOVE_CANDIDATE_DETAIL",
-  });
-}
 
 export const orgSignUp = (eml , pass, cpass) => dispatch => {
   
