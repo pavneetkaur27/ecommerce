@@ -35,7 +35,7 @@
     "ip": "^1.1.5",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^4.4.0",
-    "madge": "^3.4.4",
+    "madge": "^4.0.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "mongoose": "^5.5.0",
